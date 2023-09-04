@@ -11,7 +11,7 @@ const PARAM_POOL = "p";
 const PARAM_TARGET_RANK = "t";
 const PARAM_CUSTOM_POOL = "c";
 const PARAM_NOT_CUSTOM_POOL = "n";
-const URL = "https://produce101japan3.github.io/sort.html";
+const URL = "https://produce101japan.github.io/3/sort.html";
 const URL_PREFIX = `${URL}?r=`;
 const MAX_TRAINEE = 98;
 const RETIRED_TRAINEE = "";
