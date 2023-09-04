@@ -1,12 +1,12 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309042259";
+const FILE_VERSION = "202309042304";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
 const ICON_WIDTH = 75;
-const ICON_PREFIX = "assets/trainees/";
+const ICON_PREFIX = "assets/trainees_s/";
 const ICON_DEFAULT_IMAGE = ICON_PREFIX+"emptyrank.png";
 const ICON_BORDER = 2;
 const ICON_DEFAULT_LINE_COLOR = "#707070";
