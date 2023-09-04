@@ -1,4 +1,4 @@
-https://produce101japan3.github.io
+https://produce101japan.github.io/3/
 
 #### csv info
 
