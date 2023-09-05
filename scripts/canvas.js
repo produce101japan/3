@@ -127,8 +127,6 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
   const pCenterY = i * (ICON_WIDTH + PYRAMID_PADDING_Y) + ICON_WIDTH / 2+ HEADER_MARGIN;
   const pLeftX = (width - ICON_WIDTH  * (row_icons_size) - PYRAMID_PADDING_X * (row_icons_size - 1)) / 2 + ICON_WIDTH * j + PYRAMID_PADDING_X * j;
   const pLeftY = i * (ICON_WIDTH + PYRAMID_PADDING_Y)+ HEADER_MARGIN;
-  const borderColor = trainee != null ? (showEliminated && trainee.eliminated) ? ICON_LINE_COLOR["n"] : ICON_LINE_COLOR[trainee.group]
-                                       : ICON_DEFAULT_LINE_COLOR;
 
   // reset name
   ctx.fillStyle = '#fff';
@@ -137,9 +135,17 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
                ICON_WIDTH + PYRAMID_PADDING_X,
                PYRAMID_PADDING_Y - ICON_BORDER);
 
-  const chara = new Image();
-  chara.src = trainee != null ? ICON_PREFIX + trainee.image : ICON_DEFAULT_IMAGE
+  // put name
+  drawString(ctx,
+             trainee != null ? trainee.name : "",
+             pCenterX,
+             pCenterY + ICON_WIDTH/2 + ICON_RANK_FONT_SIZE * 2,
+             ICON_RANK_NAME_SIZE,
+             "#000",
+             "center",
+             ICON_WIDTH + PYRAMID_PADDING_X - 10)
 
+  const chara = new Image();
   chara.onload = () => {
     ctx.save();
     ctx.arc(pCenterX, pCenterY, ICON_WIDTH / 2, 0, Math.PI*2);
@@ -155,7 +161,6 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
         let y = 0.2126 *  grayTargetData[k] + 0.7152 *grayTargetData[k + 1]  + 0.0722 * grayTargetData[k + 2]
         y = parseInt(y, 10)
 
-        const avg = (grayTargetData[k] + grayTargetData[k + 1] + grayTargetData[i + 2]) / 3;
         grayTargetData[k] = grayTargetData[k + 1] = grayTargetData[k + 2] = y;
 
       }
@@ -183,16 +188,7 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
     drawString(ctx, rank + 1, pCenterX, pCenterY + ICON_WIDTH / 2 + ICON_RANK_FONT_SIZE / 2 - 1, ICON_RANK_FONT_SIZE, ICON_RANK_FONT_COLOR, "center")
   };
 
-  // put name
-  drawString(ctx,
-            trainee != null ? trainee.name : "",
-            pCenterX,
-            pCenterY + ICON_WIDTH/2 + ICON_RANK_FONT_SIZE * 2,
-            ICON_RANK_NAME_SIZE,
-            "#000",
-            "center",
-            ICON_WIDTH + PYRAMID_PADDING_X - 10)
-
+  chara.src = trainee != null ? ICON_PREFIX + trainee.image : ICON_DEFAULT_IMAGE
 }
 
 function drawPicture(ctx, width, height, picks){
