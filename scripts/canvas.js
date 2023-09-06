@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309061925";
+const FILE_VERSION = "202309061931";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
@@ -193,7 +193,7 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
     show_debug("end " + rank + " " + (trainee != null ?  trainee.id:" null")+ " image loading.")
   };
 
-  show_debug("set " + (trainee != null ? trainee.id : " null") + " image loading.");
+  show_debug("set "+ rank + " " + (trainee != null ?  trainee.id:" null") + " image loading.");
   chara.src = getDynamicUrl(trainee != null ? ICON_PREFIX + trainee.image : ICON_DEFAULT_IMAGE)
 }
 
