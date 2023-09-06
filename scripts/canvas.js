@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309061121";
+const FILE_VERSION = "202309061906";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
@@ -128,27 +128,18 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
   const pLeftX = (width - ICON_WIDTH  * (row_icons_size) - PYRAMID_PADDING_X * (row_icons_size - 1)) / 2 + ICON_WIDTH * j + PYRAMID_PADDING_X * j;
   const pLeftY = i * (ICON_WIDTH + PYRAMID_PADDING_Y)+ HEADER_MARGIN;
 
-  // reset name
-  show_debug("start fff padding.");
-  ctx.fillStyle = '#fff';
-  ctx.fillRect(pLeftX - PYRAMID_PADDING_X / 2,
-               pLeftY + ICON_WIDTH,
-               ICON_WIDTH + PYRAMID_PADDING_X,
-               PYRAMID_PADDING_Y - ICON_BORDER);
-
-  // put name
-  drawString(ctx,
-             trainee != null ? trainee.name : "",
-             pCenterX,
-             pCenterY + ICON_WIDTH/2 + ICON_RANK_FONT_SIZE * 2,
-             ICON_RANK_NAME_SIZE,
-             "#000",
-             "center",
-             ICON_WIDTH + PYRAMID_PADDING_X - 10)
-
   const chara = new Image();
   chara.onload = () => {
     show_debug("start " +  (trainee != null ?  trainee.id:" null")+ " image loading.")
+
+    // reset name
+    show_debug("start fff padding.");
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(pLeftX - PYRAMID_PADDING_X / 2,
+                 pLeftY + ICON_WIDTH,
+                 ICON_WIDTH + PYRAMID_PADDING_X,
+                 PYRAMID_PADDING_Y - ICON_BORDER);
+
     ctx.save();
     ctx.arc(pCenterX, pCenterY, ICON_WIDTH / 2, 0, Math.PI*2);
     ctx.closePath();
@@ -188,6 +179,17 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
     ctx.lineWidth = 0;
     ctx.stroke();
     drawString(ctx, rank + 1, pCenterX, pCenterY + ICON_WIDTH / 2 + ICON_RANK_FONT_SIZE / 2 - 1, ICON_RANK_FONT_SIZE, ICON_RANK_FONT_COLOR, "center")
+
+    // put name
+    drawString(ctx,
+               trainee != null ? trainee.name : "",
+               pCenterX,
+               pCenterY + ICON_WIDTH/2 + ICON_RANK_FONT_SIZE * 2,
+               ICON_RANK_NAME_SIZE,
+               "#000",
+               "center",
+               ICON_WIDTH + PYRAMID_PADDING_X - 10)
+
     show_debug("end " + (trainee != null ?  trainee.id:" null")+ " image loading.")
   };
 
