@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309061913";
+const FILE_VERSION = "202309061925";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
@@ -130,7 +130,7 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
 
   const chara = new Image();
   chara.onload = () => {
-    show_debug("start " +  (trainee != null ?  trainee.id:" null")+ " image loading.")
+    show_debug("start "  + rank + " " +  (trainee != null ?  trainee.id:" null")+ " image loading.")
 
     // reset name
     show_debug("start fff padding.");
@@ -190,7 +190,7 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
                "center",
                ICON_WIDTH + PYRAMID_PADDING_X - 10)
 
-    show_debug("end " + (trainee != null ?  trainee.id:" null")+ " image loading.")
+    show_debug("end " + rank + " " + (trainee != null ?  trainee.id:" null")+ " image loading.")
   };
 
   show_debug("set " + (trainee != null ? trainee.id : " null") + " image loading.");
