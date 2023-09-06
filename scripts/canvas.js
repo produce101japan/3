@@ -191,8 +191,8 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank)
     show_debug("end " + (trainee != null ?  trainee.id:" null")+ " image loading.")
   };
 
-  show_debug("set " + (trainee != null ?  trainee.id:" null") + " image loading.");
-  chara.src = trainee != null ? ICON_PREFIX + trainee.image : ICON_DEFAULT_IMAGE
+  show_debug("set " + (trainee != null ? trainee.id : " null") + " image loading.");
+  chara.src = getDynamicUrl(trainee != null ? ICON_PREFIX + trainee.image : ICON_DEFAULT_IMAGE)
 }
 
 function drawPicture(ctx, width, height, picks){
@@ -202,7 +202,7 @@ function drawPicture(ctx, width, height, picks){
 
   // header
   const headerImg = new Image();
-  headerImg.src = HEADER_IMG;
+  headerImg.src = getDynamicUrl(HEADER_IMG);
   // date
   drawString(ctx, 'at '+getDateString(),  width - 5,  height - 20, 12, "#000","end")
 
@@ -216,6 +216,15 @@ function drawPicture(ctx, width, height, picks){
   headerImg.onload = () => {
     show_debug("header image loaded.")
     ctx.drawImage(headerImg, 0, 0, width, HEADER_HEIGHT);
+  }
+}
+
+function getDynamicUrl(url) {
+  const time = new Date().getTime() +"&"+ Math.floor(Math.random() * 1000);
+  if (url.includes("?")) {
+    return url + "&" + time;
+  } else {
+    return url + "?" + time;
   }
 }
 
