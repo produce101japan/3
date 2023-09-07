@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309072038";
+const FILE_VERSION = "202309072056";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
@@ -221,7 +221,7 @@ function afterLoadTraineeImg(ctx, width, height, row_icons_size, i, j, trainee, 
   show_debug("end " + rank + " " + (trainee != null ? trainee.id : " null") + " image loading.")
 }
 
-function drawPicture(ctx, width, height, picks, isReset = false){
+function drawPicture(ctx, width, height, picks){
   // background
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, width, height);
@@ -235,7 +235,7 @@ function drawPicture(ctx, width, height, picks, isReset = false){
       // date
       drawString(ctx, 'at '+getDateString(),  width - 5,  height - 20, 12, "#000","end")
     })
-    drawTraineeCellIfMatch(PYRAMID_MAX + 1, isReset)
+    drawTraineeCellIfMatch(PYRAMID_MAX + 1, true)
   }
   show_debug("set header image loading.");
   headerImg.src = HEADER_IMG;
@@ -244,7 +244,7 @@ function drawPicture(ctx, width, height, picks, isReset = false){
   processPyramidCell((row_icons_size, i, j, rank) => {
     const trainee = picks[rank] !== 'undefined' && picks[rank] != null && typeof trainees[picks[rank]] !== 'undefined'
               ? trainees[picks[rank]] : null;
-    putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, PYRAMID_MAX + 1, isReset)
+    putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, PYRAMID_MAX + 1, true)
   })
 
 }
@@ -273,7 +273,7 @@ function createCanvas(picks = [], isReset = false) {
     if ( !isReset ) {
       ctx.scale(CANVAS_SCALE, CANVAS_SCALE);
     }
-    drawPicture(ctx, canvas.width / CANVAS_SCALE , canvas.height / CANVAS_SCALE, picks, isReset)
+    drawPicture(ctx, canvas.width / CANVAS_SCALE , canvas.height / CANVAS_SCALE, picks)
   }
 }
 
