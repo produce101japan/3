@@ -113,7 +113,7 @@ function includesIgnCase(mainString, subString) {
 function changeUrlBox(code){
   document.getElementById("ranking__pyramid-tools-text").value = URL_PREFIX + code;
   document.getElementById("ranking__pyramid-tools-twitter").href =
-      "https://twitter.com/intent/tweet?text=" + URL_PREFIX + code + "&hashtags=推しMENメーカー,日プガールズ"
+      "https://twitter.com/intent/tweet?text=" + URL_PREFIX + code + "&hashtags=推しMEMメーカー,日プガールズ"
 }
 
 function getPickFromCookie() {

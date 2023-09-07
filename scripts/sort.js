@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309072019";
+const FILE_VERSION = "202309072027";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 99;
 //for maker
@@ -227,7 +227,7 @@ function renderResult(finalRanking) {
   document.getElementById("target-boards-result_share-twitter_a")
       .setAttribute("href",
                     `https://twitter.com/intent/tweet?url=${encodeURI(
-                        shareUrl)}&hashtags=推しMENチェッカー,日プガールズ`);
+                        shareUrl)}&hashtags=推しMEMチェッカー,日プガールズ`);
 
   document.getElementById("controller").className = "selected";
 }
@@ -313,7 +313,7 @@ function updateShareAttendees() {
   document.getElementById("setting_condition-share-twitter")
       .setAttribute("href",
                     `https://twitter.com/intent/tweet?text=${message}`
-                    + `&url=${encodeURIComponent(shareUrl)}&hashtags=推しMENチェッカー,日プガールズ`);
+                    + `&url=${encodeURIComponent(shareUrl)}&hashtags=推しMEMチェッカー,日プガールズ`);
 
   document.getElementById("setting_condition-share-line")
       .setAttribute("href",
