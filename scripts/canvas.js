@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309071942";
+const FILE_VERSION = "202309071958";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
@@ -122,22 +122,29 @@ function processPyramidCell(processCell){
   }
 }
 
-function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, max) {
+function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, max, isReset = false) {
 
   const chara = new Image();
   chara.onload = () => {
     toDrawTraineeCell.push(
         () => afterLoadTraineeImg(ctx, width, height, row_icons_size, i, j, trainee, rank, chara))
-    if (toDrawTraineeCell.length >= max) {
-      let count = toDrawTraineeCell.length
-      for (let i = 0; i < count; i++) {
-        toDrawTraineeCell.pop()()
-      }
-    }
+    drawTraineeCellIfMatch(max, isReset)
   };
 
   show_debug("set "+ rank + " " + (trainee != null ?  trainee.id:" null") + " image loading.");
   chara.src = trainee != null ? ICON_PREFIX + trainee.image : ICON_DEFAULT_IMAGE
+}
+
+function drawTraineeCellIfMatch(max, isReset){
+  if (toDrawTraineeCell.length >= max) {
+    let count = toDrawTraineeCell.length
+    if(isReset){
+      // reset
+    }
+    for (let i = 0; i < count; i++) {
+      toDrawTraineeCell.pop()()
+    }
+  }
 }
 
 function afterLoadTraineeImg(ctx, width, height, row_icons_size, i, j, trainee, rank, chara) {
@@ -211,7 +218,7 @@ function afterLoadTraineeImg(ctx, width, height, row_icons_size, i, j, trainee, 
   show_debug("end " + rank + " " + (trainee != null ? trainee.id : " null") + " image loading.")
 }
 
-function drawPicture(ctx, width, height, picks){
+function drawPicture(ctx, width, height, picks, isReset = false){
   // background
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, width, height);
@@ -225,6 +232,7 @@ function drawPicture(ctx, width, height, picks){
       // date
       drawString(ctx, 'at '+getDateString(),  width - 5,  height - 20, 12, "#000","end")
     })
+    drawTraineeCellIfMatch(PYRAMID_MAX + 1, true)
   }
   show_debug("set header image loading.");
   headerImg.src = HEADER_IMG;
@@ -233,7 +241,7 @@ function drawPicture(ctx, width, height, picks){
   processPyramidCell((row_icons_size, i, j, rank) => {
     const trainee = picks[rank] !== 'undefined' && picks[rank] != null && typeof trainees[picks[rank]] !== 'undefined'
               ? trainees[picks[rank]] : null;
-    putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, PYRAMID_MAX + 1)
+    putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, PYRAMID_MAX + 1, true)
   })
 
 }
@@ -261,10 +269,8 @@ function createCanvas(picks = [], isReset = false) {
   if (canvas.getContext){
     if ( !isReset ) {
       ctx.scale(CANVAS_SCALE, CANVAS_SCALE);
-    }else{
-      ctx.clearRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
     }
-    drawPicture(ctx, canvas.width / CANVAS_SCALE , canvas.height / CANVAS_SCALE, picks)
+    drawPicture(ctx, canvas.width / CANVAS_SCALE , canvas.height / CANVAS_SCALE, picks, isReset)
   }
 }
 
@@ -278,7 +284,6 @@ function updateCanvas(picksToBe, isForce = false) {
           putTraineeCell(ctx, canvas.width / CANVAS_SCALE, canvas.height / CANVAS_SCALE, row_icons_size, i, j, trainee, rank, 1)
         }
     })
-    picks = picksToBe;
   }
 }
 
@@ -311,7 +316,8 @@ function changePicks(picksToBe){
   const code = encodePicks(picksToBe);
   changeUrlBox(code);
   setPickToCookie(code)
-  updateCanvas(picksToBe);
+  createCanvas(picksToBe, true);
+  picks = picksToBe;
 }
 
 function encodePicks(picksArr){
