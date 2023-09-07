@@ -1,11 +1,11 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309072104";
+const FILE_VERSION = "202309072342";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
-const ICON_WIDTH = 75;
+const ICON_WIDTH = 65;
 const ICON_PREFIX = "assets/trainees_s/";
 const ICON_DEFAULT_IMAGE = ICON_PREFIX+"emptyrank.png";
 const ICON_BORDER = 2;
@@ -25,13 +25,13 @@ const ICON_RANK_FONT_SIZE = 10;
 const ICON_RANK_FONT_COLOR = "#fff";
 const ICON_RANK_BG_COLOR = "#0086ff";
 const ICON_RANK_NAME_SIZE = 11;
-const PYRAMID_PADDING_X = 30;
-const PYRAMID_PADDING_Y = 65;
+const PYRAMID_PADDING_X = 40;
+const PYRAMID_PADDING_Y = 40;
 const HEADER_HEIGHT = 60;
 const HEADER_MARGIN = HEADER_HEIGHT + PYRAMID_PADDING_Y / 2;
 const HEADER_IMG = "assets/header.png?202102042312"
-const PYRAMID_ROWS = [1, 3, 5];
-const PYRAMID_MAX = 9; // sum of PYRAMID_ROWS
+const PYRAMID_ROWS = [1, 2, 3, 5];
+const PYRAMID_MAX = 11; // sum of PYRAMID_ROWS
 const CODE_PARAM = "r";
 
 const FONT_DEFAULT = "'Noto Sans JP', 'Open Sans', sans-serif";
