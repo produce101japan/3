@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309072027";
+const FILE_VERSION = "202309072038";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
@@ -140,6 +140,9 @@ function drawTraineeCellIfMatch(max, isReset){
     let count = toDrawTraineeCell.length
     if(isReset){
       ctx.clearRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
+      // background
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
     }
     for (let i = 0; i < count; i++) {
       toDrawTraineeCell.pop()()
@@ -232,7 +235,7 @@ function drawPicture(ctx, width, height, picks, isReset = false){
       // date
       drawString(ctx, 'at '+getDateString(),  width - 5,  height - 20, 12, "#000","end")
     })
-    drawTraineeCellIfMatch(PYRAMID_MAX + 1, true)
+    drawTraineeCellIfMatch(PYRAMID_MAX + 1, isReset)
   }
   show_debug("set header image loading.");
   headerImg.src = HEADER_IMG;
@@ -241,7 +244,7 @@ function drawPicture(ctx, width, height, picks, isReset = false){
   processPyramidCell((row_icons_size, i, j, rank) => {
     const trainee = picks[rank] !== 'undefined' && picks[rank] != null && typeof trainees[picks[rank]] !== 'undefined'
               ? trainees[picks[rank]] : null;
-    putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, PYRAMID_MAX + 1, true)
+    putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, PYRAMID_MAX + 1, isReset)
   })
 
 }
