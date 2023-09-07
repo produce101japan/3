@@ -142,7 +142,7 @@ function drawTraineeCellIfMatch(max, isReset){
       ctx.clearRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
       // background
       ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
+      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     }
     for (let i = 0; i < count; i++) {
       toDrawTraineeCell.pop()()
