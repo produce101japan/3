@@ -5,7 +5,7 @@ const CURRENT_BORDER = 52;
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309061931";
+const FILE_VERSION = "202309071928";
 const ICON_PREFIX = "assets/trainees_s/";
 
 // Takes in name of csv and populates necessary data in table
