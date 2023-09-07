@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309071928";
+const FILE_VERSION = "202309071936";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
@@ -221,20 +221,21 @@ function drawPicture(ctx, width, height, picks){
   // header
   const headerImg = new Image();
   headerImg.onload = () => {
-    show_debug("header image loaded.")
-    ctx.drawImage(headerImg, 0, 0, width, HEADER_HEIGHT);
+    toDrawTraineeCell.push(()=>{
+      ctx.drawImage(headerImg, 0, 0, width, HEADER_HEIGHT);
+      // date
+      drawString(ctx, 'at '+getDateString(),  width - 5,  height - 20, 12, "#000","end")
+    })
   }
-  // date
-  drawString(ctx, 'at '+getDateString(),  width - 5,  height - 20, 12, "#000","end")
 
   // draw picture
   processPyramidCell((row_icons_size, i, j, rank) => {
     const trainee = picks[rank] !== 'undefined' && picks[rank] != null && typeof trainees[picks[rank]] !== 'undefined'
               ? trainees[picks[rank]] : null;
-    putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, PYRAMID_MAX)
+    putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank, PYRAMID_MAX + 2)
   })
 
-  headerImg.src = getDynamicUrl(HEADER_IMG);
+  headerImg.src = HEADER_IMG;
 }
 
 function getDynamicUrl(url) {
