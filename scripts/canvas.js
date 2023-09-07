@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309071958";
+const FILE_VERSION = "202309072019";
 const CURRENT_BORDER = 99;
 const CURRENT_RANK_COLUMN = 11;
 const CANVAS_SCALE = 2;
@@ -40,6 +40,7 @@ let trainees = [];
 let draggingStart = {};
 var picks = [];
 let toDrawTraineeCell = [];
+let today = new Date();
 
 function readFromCSV(path, callback) {
   var rawFile = new XMLHttpRequest();
@@ -100,7 +101,6 @@ function drawString(ctx, text, posX, posY, fontSize = 16, textColor = '#000000',
 }
 
 function getDateString() {
-  var today = new Date();
   return today.getFullYear()
          + "/" + zeroPadding(today.getMonth() + 1, 2)
          + "/" + zeroPadding(today.getDate() , 2)
@@ -139,7 +139,7 @@ function drawTraineeCellIfMatch(max, isReset){
   if (toDrawTraineeCell.length >= max) {
     let count = toDrawTraineeCell.length
     if(isReset){
-      // reset
+      ctx.clearRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
     }
     for (let i = 0; i < count; i++) {
       toDrawTraineeCell.pop()()
