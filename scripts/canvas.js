@@ -128,8 +128,6 @@ function putTraineeCell(ctx, width, height, row_icons_size, i, j, trainee, rank,
   chara.onload = () => {
     toDrawTraineeCell.push(
         () => afterLoadTraineeImg(ctx, width, height, row_icons_size, i, j, trainee, rank, chara))
-    console.log(toDrawTraineeCell.length)
-    console.log(max)
     if (toDrawTraineeCell.length >= max) {
       let count = toDrawTraineeCell.length
       for (let i = 0; i < count; i++) {
@@ -152,7 +150,6 @@ function afterLoadTraineeImg(ctx, width, height, row_icons_size, i, j, trainee, 
   show_debug("start " + rank + " " + (trainee != null ? trainee.id : " null") + " image loading.")
 
   // reset name
-  show_debug("start fff padding.");
   ctx.fillStyle = '#FFF';
   ctx.fillRect(pLeftX - PYRAMID_PADDING_X / 2,
                pLeftY + ICON_WIDTH,
@@ -223,11 +220,13 @@ function drawPicture(ctx, width, height, picks){
   const headerImg = new Image();
   headerImg.onload = () => {
     toDrawTraineeCell.push(()=>{
+      show_debug("start header image loading.")
       ctx.drawImage(headerImg, 0, 0, width, HEADER_HEIGHT);
       // date
       drawString(ctx, 'at '+getDateString(),  width - 5,  height - 20, 12, "#000","end")
     })
   }
+  show_debug("set header image loading.");
   headerImg.src = HEADER_IMG;
 
   // draw picture
@@ -255,13 +254,11 @@ function show_debug(text) {
 }
 
 function createCanvas(picks = [], isReset = false) {
-  var canvas = document.getElementById('ranking__pyramid-canvas');
   if (!isReset) {
     canvas.addEventListener('mousedown', onMouseDown, false);
     canvas.addEventListener('mouseup', onClickCanvas, false);
   }
   if (canvas.getContext){
-    const ctx = canvas.getContext("2d");
     if ( !isReset ) {
       ctx.scale(CANVAS_SCALE, CANVAS_SCALE);
     }else{
@@ -272,9 +269,7 @@ function createCanvas(picks = [], isReset = false) {
 }
 
 function updateCanvas(picksToBe, isForce = false) {
-  var canvas = document.getElementById('ranking__pyramid-canvas');
   if (canvas.getContext){
-    const ctx = canvas.getContext("2d");
     // draw picture
     processPyramidCell((row_icons_size, i,j, rank) => {
         if(picks[rank] !== picksToBe[rank] || isForce){
@@ -421,6 +416,9 @@ function initRanking(){
   console.log("load picks: " + picks);
   changeUrlBox(encodePicks(picks));
 }
+
+var canvas = document.getElementById('ranking__pyramid-canvas');
+const ctx = canvas.getContext("2d");
 
 const lang = getSetLang();
 
