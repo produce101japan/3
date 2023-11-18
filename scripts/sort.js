@@ -1,7 +1,7 @@
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202309072342";
+const FILE_VERSION = "202311181532";
 const CURRENT_BORDER = 50;
 const CURRENT_RANK_COLUMN = 14;
 //for maker
