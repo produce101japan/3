@@ -2,8 +2,8 @@ const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
 const FILE_VERSION = "202309072342";
-const CURRENT_BORDER = 99;
-const CURRENT_RANK_COLUMN = 11;
+const CURRENT_BORDER = 50;
+const CURRENT_RANK_COLUMN = 14;
 const CANVAS_SCALE = 2;
 const ICON_WIDTH = 65;
 const ICON_PREFIX = "assets/trainees_s/";

@@ -2,8 +2,8 @@ const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
 const FILE_VERSION = "202309072342";
-const CURRENT_BORDER = 99;
-const CURRENT_RANK_COLUMN = 99;
+const CURRENT_BORDER = 50;
+const CURRENT_RANK_COLUMN = 14;
 //for maker
 const PYRAMID_MAX = 11; // sum of PYRAMID_ROWS
 const PARAM_RESULT = "r";
