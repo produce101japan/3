@@ -1,11 +1,11 @@
 const L_COOKIE_NAME = 'list';
 const L_COOKIE_EXPIRES_SECOND = 3600 * 24 * 90; // 3month
-const CURRENT_RANK_COLUMN = 14;
-const CURRENT_BORDER = 52;
+const CURRENT_RANK_COLUMN = 15;
+const CURRENT_BORDER = 20;
 const MEMBER_FILE = {
   default: "trainee_info.csv"
 }
-const FILE_VERSION = "202311181532";
+const FILE_VERSION = "202312100132";
 const ICON_PREFIX = "assets/trainees_s/";
 
 // Takes in name of csv and populates necessary data in table
